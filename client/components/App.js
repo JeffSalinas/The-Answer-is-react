@@ -20,7 +20,7 @@ export default class App extends Component {
   render() {
     return (
       <div id={'app'}>
-        What is Jedi?
+        What is Jedi ?
         {/* Gameboard */}
         {/* Scoreboard */}
         {/* Response */}
