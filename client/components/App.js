@@ -20,7 +20,7 @@ export default class App extends Component {
   render() {
     return (
       <div id={'app'}>
-        What is Reactor
+        What is Reactor 2?
         {/* Gameboard */}
         {/* Scoreboard */}
         {/* Response */}
