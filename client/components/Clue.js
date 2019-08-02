@@ -5,15 +5,14 @@ const Clue = props => {
   // show $ value of clue OR
   // the Clue question itself OR
   // empty screen if it was already answered
-  console.log(props.answeredQuestions)
-  console.log(props.clues) //id?
-
   if(props.currentQuestion.question) {
     return (
       <div>{props.currentQuestion.question}</div>
     )
-  } else if (props.answeredQuestions.indexOf(props.clues) >= 0) {
-    <div className="clueValue"></div>
+  } else if (props.answeredQuestions.indexOf(props.clues.id) >= 0) {
+    return (
+    <div className="clueValue">{''}</div>
+    )
   } else {
     return (
       <div className="clueValue" onClick={() => props.selectQuestion(props.clues)}>

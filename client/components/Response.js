@@ -13,7 +13,9 @@ export default class Response extends Component {
     this.setState({ userResponse: newText });
   }
   submitResponse(event, value) {
-    if (this.props.currentQuestion.answer.toLowerCase() === value.toLowerCase()) {
+    if (!this.props.currentQuestion.answer) {
+      console.log('What is 42?');
+    } else if (this.props.currentQuestion.answer.toLowerCase() === value.toLowerCase()) {
       this.recordResponse(value);
       this.props.selectQuestion({});
       this.props.changeScore(this.props.currentScore + this.props.currentQuestion.value);

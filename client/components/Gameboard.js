@@ -8,9 +8,10 @@ const Gameboard = props => {
     if (props.currentQuestion.question) {
       return (
         <div data-testid="gameboard" id="question">
-          <Clue 
-          currentQuestion={props.currentQuestion}
-          />
+           
+          {props.currentQuestion.question}
+          
+          
         </div>
       )
     } else {
