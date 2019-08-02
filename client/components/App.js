@@ -16,13 +16,17 @@ export default class App extends Component {
     };
   }
 
-  selectQuestion () {
-    console.log('selectQuestion activated!')
+  selectQuestion (clue) {
+    this.setState({currentQuestion: clue}, this.render)
   }
 
-  // changeScore (scoreUpdate) {
-  //   this.setState({score: scoreUpdate}, componentDidMount)
-  // }
+  changeScore (newScore) {
+    this.setState({score: newScore})
+  }
+
+  recordAnswer (question) {
+    this.setState({answeredQuestions: this.state.answeredQuestions.concat(question)})
+  }
 
   componentDidMount() {
     // Getting data from an external API
@@ -41,7 +45,13 @@ export default class App extends Component {
         < Scoreboard 
           score={this.state.score}
         />
-        {/* Response */}
+        <Response 
+          currentScore={this.state.score}
+          changeScore={this.changeScore.bind(this)}
+          currentQuestion={this.state.currentQuestion}
+          selectQuestion={this.selectQuestion.bind(this)} 
+          recordAnswer={this.recordAnswer.bind(this)}
+        />
       </div>
     );
   }

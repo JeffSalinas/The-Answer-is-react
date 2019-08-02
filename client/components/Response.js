@@ -12,18 +12,42 @@ export default class Response extends Component {
   recordResponse(newText) {
     this.setState({ userResponse: newText });
   }
-  submitResponse(event) {
+  submitResponse(event, value) {
+    if (this.props.currentQuestion.answer.toLowerCase() === value.toLowerCase()) {
+      this.recordResponse(value);
+      this.props.selectQuestion({});
+      this.props.changeScore(this.props.currentScore + this.props.currentQuestion.value);
+      this.props.recordAnswer(this.props.currentQuestion.id);
+      console.log('yayy!!')
+    } else {
+      this.props.changeScore(this.props.currentScore - this.props.currentQuestion.value);
+      this.props.selectQuestion({});
+      this.recordResponse(value);
+      this.props.recordAnswer(this.props.currentQuestion.id);
+      console.log('Try harder :)');
+
+    }
     // this function should fire when the user fills the response and hits 'enter'
       // Is the user response correct? 
       // yes/no? What should happen?
   }
   render(){
+    var handleEnter = (e) => {
+      if (e.key === 'Enter') {
+        this.submitResponse(null, document.getElementById('here').value)
+        document.getElementById('here').value = '';
+      }
+    }
+    
     return (
       <div id={'response'} data-testid="response">
-        <input
+        <input 
+          id='here'
           type='text'
           placeholder='Answers go here!'
-          // handle data change
+          onKeyDown={(e) => handleEnter(e)}
+          
+             // handle data change
           // handle when 'enter' is hit
         >
         </input>
