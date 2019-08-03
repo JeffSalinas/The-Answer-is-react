@@ -3,6 +3,7 @@ import { categories } from '../../testdata';
 import Scoreboard from './Scoreboard';
 import Gameboard from './Gameboard';
 import Response from './Response';
+import axios from 'axios';
 
 export default class App extends Component {
   constructor(props) {
@@ -21,9 +22,17 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    axios.get('http://jservice.io/api/categories?count=5')
+      .then(results => {
+        console.log(results.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
     
     // Getting data from an external API
-    //http://jservice.io/api/categories
+    //
     //1. A query to /api/categories to get a set of categories
     //2. A set of queries afterwards to /api/category at each category id to get clues for that category
     // fetch("http://jservice.io/api/categories")
@@ -42,7 +51,7 @@ export default class App extends Component {
     //       });
     //     }
     //   )
-  }
+
 
   render() {
 
